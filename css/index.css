@@ -1,0 +1,263 @@
+/* Đảm bảo các phần tử Giỏ hàng, Đăng nhập và Đăng ký nằm cùng một dòng */
+#giohang, #hinh1, #hinh2 {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+
+#giohang {
+    margin-left: 15px;
+}
+
+#giohang:hover {
+    box-shadow: 5px 5px 10px grey;
+}
+
+
+#hinh1:hover, #hinh2:hover {
+    opacity: 20%;
+}
+
+/* Chỉnh sửa cẩm nang danh mục để tránh xuống dòng */
+#danh-muc ul {
+    display: flex;
+    flex-wrap: nowrap;  /* Không xuống dòng */
+    justify-content: center;
+    list-style: none;
+    padding-left: 0;
+}
+
+#danh-muc ul li {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 10px; /* Đảm bảo khoảng cách giữa các phần tử */
+}
+
+#danh-muc ul li:hover {
+    background-color: #0056b3;
+}
+
+/* Đảm bảo Navbar và các phần tử bên trong luôn nằm trên một dòng */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Chia đều không gian giữa các phần tử */
+    align-items: center;
+    padding: 1rem;
+    background-color: #007bff;
+}
+
+.navbar .navbar-brand {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    color: white !important;
+    font-size: 1.1rem;
+    margin-left: 20px;
+}
+
+.nav-link:hover {
+    color: #ffcc00 !important;
+}
+
+/* Chỉnh sửa phần tìm kiếm */
+.ip {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 1.1rem;
+}
+
+#timKiem {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#timKiem:hover {
+    transform: scale(1.1);
+}
+
+/* Chỉnh sửa phần các sản phẩm */
+#but .col-lg-3 {
+    padding: 15px;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+#but .col-lg-3:hover {
+    transform: translateY(-10px);
+}
+
+#but img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+#but p {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    color: #d9534f;
+}
+
+#but b {
+    font-size: 1.2rem;
+    color: #0275d8;
+    font-weight: bold;
+}
+
+/* Chỉnh sửa footer */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+footer .col-lg-3 {
+    padding: 20px;
+}
+
+footer h5 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+footer p, footer ul {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer ul li {
+    margin-bottom: 5px;
+}
+
+/* Thêm Flexbox vào danh mục và phần "Cẩm nang" */
+#danh-muc ul {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+#danh-muc li {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#danh-muc li:hover {
+    background-color: #0056b3;
+}
+
+/* Giỏ hàng */
+#giohang {
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+#giohang:hover {
+    box-shadow: 5px 5px 10px grey;
+}
+
+/* Giỏ hàng, đăng nhập và đăng ký cùng dòng */
+#giohang, #hinh1, #hinh2 {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+#giohang {
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+/* Chỉnh sửa các phần khác để đảm bảo không bị lỗi layout */
+@media (max-width: 768px) {
+    #danh-muc ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #giohang, #hinh1, #hinh2 {
+        margin-right: 10px;
+    }
+}
+/* Cẩm nang */
+#tap-hop img {
+    width: 80px; /* Đặt chiều rộng cố định cho hình ảnh */
+    height: auto; /* Để giữ tỷ lệ cho hình ảnh */
+    margin-left: 100px;
+    transition: transform 0.3s;
+}
+
+#tap-hop img:hover {
+    transform: scale(1.1);
+}
+
+/* Đăng nhập, Đăng ký và Giỏ hàng nằm chung một hàng */
+#header-icons {
+    display: flex;
+    justify-content: flex-start; /* Canh trái để các biểu tượng không bị phân tán quá rộng */
+    align-items: center;
+}
+
+#hinh1, #hinh2, #giohang {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+#hinh1, #hinh2, #giohang {
+    display: inline-block; /* Đảm bảo chúng nằm trong cùng một dòng */
+    margin-top: 10px;
+}
+
+#hinh1:hover, #hinh2:hover, #giohang:hover {
+    opacity: 0.7;
+}
+
+/* Điều chỉnh khoảng cách giữa các phần tử trong header */
+#header-icons img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Các phần tử đăng nhập và giỏ hàng */
+#p1, #p2 {
+    display: inline-block;
+    margin-top: 5px;
+    color: #555;
+}
+
+#p2 {
+    font-weight: bold;
+}
+
+#p2 span {
+    font-size: 0.9rem;
+    color: #007bff;
+}

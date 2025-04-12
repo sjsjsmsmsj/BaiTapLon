@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách sản phẩm</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/script.js"></script>
+</head>
+<body>
+    <!-- Thanh điều hướng -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Cửa Hàng</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="home.html" class="nav-link">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link active category-link" data-category="all" href="#">Tất cả</a></li>
+                    <li class="nav-item"><a class="nav-link category-link" data-category="vanphong" href="#">Văn Phòng</a></li>
+                    <li class="nav-item"><a class="nav-link category-link" data-category="hocduong" href="#">Học Đường</a></li>
+                    <li class="nav-item"><a class="nav-link category-link" data-category="dochoi" href="#">Đồ Chơi</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Modal xem chi tiết -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalProductName"></h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalProductImage" src="" class="img-fluid mb-3" alt="">
+                    <p class="text-danger fw-bold" id="modalProductPrice"></p>
+                    <label for="quantityInput">Số lượng:</label>
+                    <input type="number" id="quantityInput" class="form-control w-50 mx-auto" value="1" min="1">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" onclick="addToCartFromModal()">Thêm vào giỏ</button>
+                    <a href="review.html" class="btn btn-outline-primary mt-2">Xem đánh giá</a>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row" id="product-list"></div>
+    </div>
+
+    <script>
+        const products = [
+// Văn phòng
+{ name: "Bấm Kim", image: "/img/bamKim.png", category: "vanphong", price: 25000, quantity: 50, bestSeller: true},
+{ name: "Bút Long Bảng", image: "/img/butLongBang.png", category: "vanphong", price: 22000, quantity: 30, bestSeller: false },
+{ name: "Combo 12 Bút", image: "/img/combo12But.png", category: "vanphong", price: 99000, quantity: 20, bestSeller: true },
+{ name: "Máy Tính Văn Phòng", image: "/img/mayTinhVanPhong.png", category: "vanphong", price: 350000, quantity: 15, bestSeller: true },
+{ name: "Túi Giấy", image: "/img/tuiGiay.png", category: "vanphong", price: 8000, quantity: 200, bestSeller: false },
+{ name: "Nhà Lãnh Đạo", image: "/img/nhaLanhDao.png", category: "vanphong", price: 120000, quantity: 10, bestSeller: false },
+{ name: "Thước Trong", image: "/img/thuocTrong.png", category: "vanphong", price: 15000, quantity: 40, bestSeller: false },
+{ name: "Khẩu trang xanh", image: "/img/butlong1.png", category: "vanphong", price: 20000, quantity: 80, bestSeller: false },
+{ name: "Khẩu trang vip", image: "/img/butlong2.png", category: "vanphong", price: 400000, quantity: 80, bestSeller: false },
+{ name: "Khẩu trang diệt khuẩn", image: "/img/butlong3.png", category: "vanphong", price: 20000, quantity: 80, bestSeller: false },
+{ name: "Bút lông copypaper", image: "/img/butlong4.png", category: "vanphong", price: 340000, quantity: 80, bestSeller: false },
+
+// Học đường
+{ name: "Bộ 2 Bút", image: "/img/bo2But.png", category: "hocduong", price: 15000, quantity: 80, bestSeller: true },
+{ name: "Bút 1", image: "/img/but1.png", category: "hocduong", price: 5000, quantity: 100, bestSeller: false},
+{ name: "Bút 2", image: "/img/but2.png", category: "hocduong", price: 7000, quantity: 90, bestSeller: true },
+{ name: "Bút Chì", image: "/img/butcc.png", category: "hocduong", price: 6000, quantity: 120, bestSeller: false },
+{ name: "Bút Gel", image: "/img/butGel.png", category: "hocduong", price: 12000, quantity: 60, bestSeller: true },
+{ name: "Ruột Bút Bi", image: "/img/ruotbutbi.png", category: "hocduong", price: 4000, quantity: 150, bestSeller: false },
+{ name: "Tập Học Sinh", image: "/img/tapHocSinh.png", category: "hocduong", price: 18000, quantity: 90, bestSeller: true },
+{ name: "Bút mực con gấu", image: "/img/gdt1.png", category: "hocduong", price: 20000, quantity: 90, bestSeller: true },
+{ name: "Bút mực con cáo", image: "/img/gdt2.png", category: "hocduong", price: 20000, quantity: 90, bestSeller: true },
+{ name: "Bút mực 2 màu", image: "/img/gdt3.png", category: "hocduong", price: 20000, quantity: 90, bestSeller: true },
+{ name: "Bút mực chuyên dụng", image: "/img/gdt4.png", category: "hocduong", price: 20000, quantity: 90, bestSeller: true },
+
+
+
+
+
+
+// Đồ chơi
+{ name: "Bút Đa Long", image: "/img/butDaLong.png", category: "dochoi", price: 27000, quantity: 45, bestSeller: false },
+{ name: "Combo Bé Vui", image: "/img/comboBeVui.png", category: "dochoi", price: 59000, quantity: 30, bestSeller: true },
+{ name: "Bút Long Nhiều Màu", image: "/img/butLongNhieuMau.png", category: "dochoi", price: 30000, quantity: 50, bestSeller: true },
+{ name: "Hộp Bút Lông Màu", image: "/img/hopButLongMau.png", category: "dochoi", price: 45000, quantity: 35, bestSeller: false },
+{ name: "Màu Rửa Được", image: "/img/mauRuaDuoc.png", category: "dochoi", price: 55000, quantity: 25, bestSeller: true },
+{ name: "Combo 20 Bút", image: "/img/combo20But.png", category: "dochoi", price: 120000, quantity: 20, bestSeller: false },
+{ name: "Combo Toán Học", image: "/img/comboToanHoc.png", category: "dochoi", price: 90000, quantity: 40, bestSeller: false }
+];
+
+        function renderProducts(category = "all") {
+            let container = document.getElementById("product-list");
+            container.innerHTML = "";
+
+            let filteredProducts = category === "all"
+                ? products
+                : products.filter(product => product.category === category);
+
+            filteredProducts.forEach((product, index) => {
+                container.innerHTML += `
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100">
+                            <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                            <div class="card-body">
+                                <h5 class="card-title">${product.name}</h5>
+                                <p class="card-text text-danger fw-bold">${product.price.toLocaleString()} VNĐ</p>
+                                <button class="btn btn-info" onclick="viewDetail(${index})">Xem chi tiết</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        let selectedProduct = {}; 
+
+        function viewDetail(index) {
+            selectedProduct = products[index];
+            document.getElementById("modalProductName").textContent = selectedProduct.name;
+            document.getElementById("modalProductImage").src = selectedProduct.image;
+            document.getElementById("modalProductImage").alt = selectedProduct.name;
+            document.getElementById("modalProductPrice").textContent = selectedProduct.price.toLocaleString() + " VNĐ";
+            document.getElementById("quantityInput").value = 1;
+
+            const modal = new bootstrap.Modal(document.getElementById('productModal'));
+            modal.show();
+        }
+
+        function addToCartFromModal() {
+            const quantity = parseInt(document.getElementById("quantityInput").value);
+            if (quantity < 1) return alert("Vui lòng nhập số lượng hợp lệ!");
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let existing = cart.find(item => item.name === selectedProduct.name);
+
+            if (existing) {
+                existing.quantity += quantity;
+            } else {
+                cart.push({
+                    name: selectedProduct.name,
+                    price: selectedProduct.price,
+                    image: selectedProduct.image,
+                    quantity: quantity
+                });
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(`✅ Đã thêm ${quantity} x ${selectedProduct.name} vào giỏ hàng!`);
+            bootstrap.Modal.getInstance(document.getElementById('productModal')).hide();
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const categoryLinks = document.querySelectorAll('.category-link');
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const category = this.getAttribute('data-category');
+                    renderProducts(category);
+                    categoryLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            renderProducts();
+        });
+    </script>
+</body>
+</html>
+
+
+

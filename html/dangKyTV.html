@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký Thành Viên</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/script.js"></script>
+
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card shadow-lg p-4" style="width: 400px;">
+            <h3 class="text-center">Đăng Ký Thành Viên</h3>
+            <form id="registerForm">
+                <div class="mb-3">
+                    <label>Họ và Tên</label>
+                    <input type="text" class="form-control" id="fullName" required>
+                </div>
+                <div class="mb-3">
+                    <label>Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                    <label>Tên đăng nhập</label>
+                    <input type="text" class="form-control" id="regUsername" required>
+                </div>
+                <div class="mb-3">
+                    <label>Mật khẩu</label>
+                    <input type="password" class="form-control" id="regPassword" required>
+                </div>
+                <div class="mb-3">
+                    <label>Nhập lại mật khẩu</label>
+                    <input type="password" class="form-control" id="regConfirmPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Đăng Ký</button>
+                <p id="regMessage" class="text-danger text-center mt-2"></p>
+            </form>
+            <div id="userInfo" class="mt-4 d-none">
+                <h4>Thông tin đăng ký:</h4>
+                <p><strong>Họ và Tên:</strong> <span id="displayFullName"></span></p>
+                <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+                <p><strong>Tên đăng nhập:</strong> <span id="displayUsername"></span></p>
+            </div>
+            <p class="text-center mt-3">Bạn đã có tài khoản? <a href="dangNhap.html">Đăng nhập tại đây</a></p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Đăng ký
+            $("#registerForm").on("submit", function(event) {
+                event.preventDefault();
+                let fullName = $("#fullName").val().trim();
+                let email = $("#email").val().trim();
+                let username = $("#regUsername").val().trim();
+                let password = $("#regPassword").val().trim();
+                let confirmPassword = $("#regConfirmPassword").val().trim();
+                
+                if (password !== confirmPassword) {
+                    $("#regMessage").text("Mật khẩu nhập lại không khớp!");
+                    return;
+                }
+                
+                let user = { fullName, email, username, password };
+                let users = JSON.parse(localStorage.getItem("users")) || [];
+                users.push(user);
+                localStorage.setItem("users", JSON.stringify(users));
+                
+                $("#displayFullName").text(fullName);
+                $("#displayEmail").text(email);
+                $("#displayUsername").text(username);
+                $("#userInfo").removeClass("d-none");
+                $("#regMessage").text("Đăng ký thành công!").css("color", "green");
+
+                // Sau 2 giây chuyển hướng đến trang đăng nhập
+                setTimeout(function() {
+                    window.location.href = "dangNhap.html";
+                }, 2000);
+                
+                $("#registerForm")[0].reset();
+            });
+        });
+    </script>
+</body>
+</html>

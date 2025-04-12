@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đánh giá sản phẩm</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/script.js"></script>
+  <style>
+    body {
+      background-color: #f8f9fa;
+      padding: 30px;
+    }
+
+    .review-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .review-image {
+      max-width: 100px;
+      border-radius: 8px;
+      margin-right: 15px;
+    }
+
+    .star {
+      color: #ffcc00;
+      font-size: 1.2rem;
+    }
+
+    .form-section {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="mb-4">Gửi đánh giá sản phẩm</h2>
+    <form id="reviewForm" class="form-section">
+      <div class="mb-3">
+        <label for="name" class="form-label">Tên của bạn:</label>
+        <input type="text" class="form-control" id="name" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="comment" class="form-label">Nhận xét:</label>
+        <textarea class="form-control" id="comment" rows="3" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="stars" class="form-label">Chọn số sao:</label>
+        <select class="form-select" id="stars" required>
+          <option value="">-- Chọn số sao --</option>
+          <option value="1">⭐</option>
+          <option value="2">⭐⭐</option>
+          <option value="3">⭐⭐⭐</option>
+          <option value="4">⭐⭐⭐⭐</option>
+          <option value="5">⭐⭐⭐⭐⭐</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label">Ảnh sản phẩm (tùy chọn):</label>
+        <input type="file" class="form-control" id="image" accept="image/*" />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
+      <a href="home.html" class="btn btn-secondary ms-2">Về trang chủ</a>
+    </form>
+
+    <h3 class="mb-4">Đánh giá gần đây</h3>
+    <div id="reviewList"></div>
+  </div>
+
+  <script>
+    document.getElementById("reviewForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const comment = document.getElementById("comment").value.trim();
+      const stars = parseInt(document.getElementById("stars").value);
+      const imageInput = document.getElementById("image");
+
+      if (!stars) {
+        alert("Vui lòng chọn số sao!");
+        return;
+      }
+
+      if (imageInput.files.length > 0) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const imageData = e.target.result;
+          saveReview(name, comment, stars, imageData);
+        };
+        reader.readAsDataURL(imageInput.files[0]);
+      } else {
+        saveReview(name, comment, stars, "");
+      }
+
+      this.reset();
+    });
+
+    function saveReview(name, comment, stars, image) {
+      const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+      reviews.push({ name, comment, stars, image });
+      localStorage.setItem("reviews", JSON.stringify(reviews));
+      loadReviews();
+    }
+
+    function loadReviews() {
+      const reviewList = document.getElementById("reviewList");
+      reviewList.innerHTML = "";
+      const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+      reviews.reverse().forEach((r) => {
+        const div = document.createElement("div");
+        div.className = "review-card d-flex";
+
+        if (r.image) {
+          const img = document.createElement("img");
+          img.src = r.image;
+          img.alt = "Ảnh sản phẩm";
+          img.className = "review-image";
+          div.appendChild(img);
+        }
+
+        const content = document.createElement("div");
+        content.innerHTML = `
+          <h5>${r.name}</h5>
+          <div>${"⭐".repeat(r.stars)}</div>
+          <p class="mt-2">${r.comment}</p>
+        `;
+
+        div.appendChild(content);
+        reviewList.appendChild(div);
+      });
+    }
+
+    window.onload = loadReviews;
+  </script>
+</body>
+</html>
