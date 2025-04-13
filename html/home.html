@@ -14,9 +14,9 @@
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     
             if (currentUser) {
-                $("#userName").text(currentUser.fullName); // hiện tên
-                $("#subAction").text(""); // ẩn chữ "Đăng ký"
-                $("#userLink").attr("href", "#"); // không cho chuyển hướng nữa hoặc có thể là "thông tin cá nhân"
+                $("#userName").text(currentUser.fullName); 
+                $("#subAction").text(""); 
+                $("#userLink").attr("href", "#"); 
             }
         });
     </script>
@@ -43,28 +43,42 @@
             </div>
         </nav>
     
-        <div class="row">
-            <div class="col-lg-3"><img src="/img/logo.png" alt="Logo" width="250px"></div>
-            <div class="col-lg-5 position-relative">
-                <input type="text" class="ip" id="searchInput" required placeholder="Tìm kiếm sản phẩm">
-                <a href="/html/danhSach.html"><img src="/img/timKiem.png" alt="Tìm kiếm" width="50px" height="35px" id="timKiem"></a>
+        <div class="row align-items-center py-3 custom-header">
+            <div class="col-lg-3 text-center text-lg-start mb-3 mb-lg-0">
+                <img src="/img/logo.png" alt="Logo" class="img-fluid" style="max-width: 200px;">
+            </div>
+        
+            <div class="col-lg-5 position-relative mb-3 mb-lg-0">
+                <div class="input-group">
+                    <input type="text" class="form-control custom-search-input" id="searchInput" placeholder="Tìm kiếm sản phẩm" required>
+                    <a href="/html/danhSach.html" class="btn btn-primary px-3">
+                        <img src="/img/timKiem.png" alt="Tìm kiếm" width="25px">
+                    </a>
+                </div>
                 <div id="suggestions" class="suggestions-box"></div> 
             </div>
-            
-            
-            <div class="col-lg-4">
-                <img src="/img/dienthoai.png" alt="Điện thoại" class="rounded-circle" id="hinh1" width="50px" height="50px">
-                <p id="p1" class="lead">1900 866 819</p>
-                <a href="dangKyTV.html" id="userLink">
-                    <img src="/img/dangnhap.png" alt="Đăng nhập" class="rounded-circle" id="hinh2" width="50px" height="50px">
-                    <p id="p2"><strong id="userName">Đăng nhập</strong><br><span id="subAction">Đăng ký</span></p>
+        
+            <div class="col-lg-4 d-flex align-items-center justify-content-around">
+                <div class="d-flex align-items-center">
+                    <img src="/img/dienthoai.png" alt="Điện thoại" class="rounded-circle me-2" width="40" height="40">
+                    <div>
+                        <p class="mb-0 fw-bold text-dark">1900 866 819</p>
+                    </div>
+                </div>
+        
+                <a href="dangKyTV.html" class="d-flex align-items-center text-decoration-none text-dark">
+                    <img src="/img/dangnhap.png" alt="Đăng nhập" class="rounded-circle me-2" width="40" height="40">
+                    <div>
+                        <strong id="userName">Đăng nhập</strong><br><span id="subAction" style="font-size: 0.85rem;">Đăng ký</span>
+                    </div>
                 </a>
+        
                 <a href="gioHang.html">
-                    <img src="/img/giohang.png" alt="Giỏ hàng" width="50px" id="giohang" class="rounded">
+                    <img src="/img/giohang.png" alt="Giỏ hàng" width="40" class="rounded">
                 </a>
-                
             </div>
         </div>
+        
         
         <div class="row qc-row">
             <div class="col-lg-6">

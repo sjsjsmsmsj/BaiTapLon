@@ -123,6 +123,40 @@
                 </div>
             </div>
         </div>
+        <div class="mt-5">
+            <h4 class="text-center mb-3">Bạn có câu hỏi khác?</h4>
+            <form id="questionForm">
+            <div class="mb-3">
+            <label for="userQuestion" class="form-label">Nhập câu hỏi của bạn:</label>
+            <input type="text" class="form-control" id="userQuestion" placeholder="Ví dụ: Thời gian giao hàng là bao lâu?" required>
+        </div>
+            <button type="submit" class="btn btn-primary">Gửi câu hỏi</button>
+            </form>
+
+            <div class="mt-4" id="userQuestionsSection" style="display: none;">
+                <h5 class="mb-3">Câu hỏi bạn đã gửi:</h5>
+                <ul id="userQuestionsList" class="list-group"></ul>
+            </div>
+        </div>
+
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#questionForm').on('submit', function(e) {
+                e.preventDefault();
+                const question = $('#userQuestion').val().trim();
+    
+                if (question !== '') {
+                    const li = $('<li></li>')
+                        .addClass('list-group-item')
+                        .text(question);
+                    $('#userQuestionsList').append(li);
+                    $('#userQuestionsSection').show();
+                    $('#userQuestion').val('');
+                }
+            });
+        });
+    </script>
+    
 </body>
 </html>
