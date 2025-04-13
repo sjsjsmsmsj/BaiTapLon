@@ -24,23 +24,30 @@ $(document).ready(function () {
         { name: "Bút lông Parker", img: "/img/butlong2.png" },
         { name: "Bút lông Son-X", img: "/img/butlong3.png" },
         { name: "Bút lông Son-Y", img: "/img/butlong4.png" },
-        // Thêm các sản phẩm khác vào đây...
+        { name: "Bấm Kim", image: "/img/bamKim.png"},
+        { name: "Bút Long Bảng", image: "/img/butLongBang.png"},
+        { name: "Combo 12 Bút", image: "/img/combo12But.png" },
+        { name: "Máy Tính Văn Phòng", image: "/img/mayTinhVanPhong.png"},
+        { name: "Túi Giấy", image: "/img/tuiGiay.png" },
+        { name: "Nhà Lãnh Đạo", image: "/img/nhaLanhDao.png"},
+        {
+            name: "Thước Trong", image: "/img/thuocTrong.png"},
+        { name: "Khẩu trang xanh", image: "/img/butlong1.png"},
+        { name: "Khẩu trang vip", image: "/img/butlong2.png" },
+        { name: "Khẩu trang diệt khuẩn", image: "/img/butlong3.png"},
+        { name: "Bút lông copypaper", image: "/img/butlong4.png" },
     ];
 
     $("#searchInput").on("input", function () {
         const query = $(this).val().toLowerCase();
         const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
-        
-        // Clear previous suggestions
+
         $("#suggestions").empty();
 
         if (query !== "") {
             filteredProducts.forEach(product => {
                 $("#suggestions").append(`
-                    <div class="suggestion-item">
-                        <img src="${product.img}" alt="${product.name}">
-                        <span>${product.name}</span>
-                    </div>
+                    <div class="suggestion-item">${product.name}</div>
                 `);
             });
             $("#suggestions").show();
@@ -49,17 +56,16 @@ $(document).ready(function () {
         }
     });
 
-    // Khi nhấp vào gợi ý
     $(document).on("click", ".suggestion-item", function () {
         const productName = $(this).text();
         $("#searchInput").val(productName);
         $("#suggestions").hide();
     });
 
-    // Ẩn gợi ý khi nhấp ra ngoài
     $(document).click(function (event) {
         if (!$(event.target).closest("#searchInput, #suggestions").length) {
             $("#suggestions").hide();
         }
     });
 });
+

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quảng Cáo Sản Phẩm</title>
+    <!-- Thêm liên kết Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/script.js"></script>
+    <style>
+        /* Thiết lập style cho các câu hỏi và câu trả lời */
+        .accordion-button {
+            background-color: #0275d8;
+            color: white;
+            font-size: 1.2rem;
+        }
+        .accordion-button:hover {
+            background-color: #025aa5;
+        }
+        .accordion-body {
+            font-size: 1rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <h2 class="section-title text-center my-4">Câu Hỏi Thường Gặp</h2>
+
+        <div class="accordion" id="faqAccordion">
+            <!-- Câu hỏi 1 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Làm thế nào để tôi có thể kiểm tra đơn hàng của mình?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Để kiểm tra đơn hàng của bạn, bạn cần làm theo các bước sau:
+                        <ol>
+                            <li>Đăng nhập vào tài khoản của bạn trên website.</li>
+                            <li>Truy cập vào mục "Đơn hàng của tôi" trong phần tài khoản.</li>
+                            <li>Chọn đơn hàng mà bạn muốn kiểm tra.</li>
+                            <li>Bạn sẽ thấy thông tin chi tiết về tình trạng đơn hàng, bao gồm trạng thái giao hàng, số theo dõi, và thời gian dự kiến giao hàng.</li>
+                            <li>Nếu có vấn đề về đơn hàng, bạn có thể liên hệ với bộ phận hỗ trợ khách hàng thông qua mục "Hỗ trợ" trên website.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Câu hỏi 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Các sản phẩm outlet có đảm bảo chất lượng không?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Tất cả các sản phẩm trong chương trình Outlet đều là hàng chính hãng và được kiểm tra kỹ càng trước khi đưa ra bán. Chúng tôi đảm bảo sản phẩm có chất lượng tốt, và bạn có thể yên tâm về các vấn đề bảo hành và hỗ trợ sau bán hàng. Nếu có bất kỳ sự cố nào về chất lượng sản phẩm, chúng tôi cam kết đổi trả hoặc hoàn tiền.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Câu hỏi 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Làm thế nào để tôi có thể thanh toán cho đơn hàng của mình?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Bạn có thể thanh toán cho đơn hàng của mình qua nhiều phương thức sau:
+                        <ul>
+                            <li><strong>Thanh toán qua thẻ tín dụng/ghi nợ:</strong> Sử dụng thẻ Visa, MasterCard hoặc các loại thẻ quốc tế khác.</li>
+                            <li><strong>Thanh toán qua chuyển khoản ngân hàng:</strong> Chuyển tiền vào tài khoản ngân hàng của chúng tôi.</li>
+                            <li><strong>Thanh toán khi nhận hàng (COD):</strong> Bạn có thể thanh toán trực tiếp khi nhận hàng từ đơn vị vận chuyển.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Câu hỏi 4 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Chính sách đổi trả của bạn như thế nào?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Chính sách đổi trả của chúng tôi rất linh hoạt:
+                        <ul>
+                            <li>Trong vòng 7 ngày kể từ ngày nhận hàng, bạn có thể yêu cầu đổi trả sản phẩm nếu sản phẩm bị lỗi hoặc không như mô tả.</li>
+                            <li>Sản phẩm đổi trả phải còn nguyên vẹn, chưa qua sử dụng và bao bì còn đầy đủ.</li>
+                            <li>Chi phí vận chuyển đổi trả do khách hàng chịu, trừ khi sản phẩm bị lỗi hoặc giao sai.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Câu hỏi 5 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Làm thế nào để tôi có thể liên hệ với bộ phận hỗ trợ khách hàng?
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Bạn có thể liên hệ với bộ phận hỗ trợ khách hàng của chúng tôi qua các phương thức sau:
+                        <ul>
+                            <li><strong>Gọi điện thoại:</strong> Số điện thoại hỗ trợ khách hàng: 1800-xxxxxx.</li>
+                            <li><strong>Gửi email:</strong> Địa chỉ email: support@website.com.</li>
+                            <li><strong>Chát trực tuyến:</strong> Truy cập vào mục "Hỗ trợ trực tuyến" trên website để chat với nhân viên hỗ trợ.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
