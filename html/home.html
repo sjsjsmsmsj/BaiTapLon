@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh Sách Sản Phẩm</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/index.css">
-    <script src="/js/jquery-3.7.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/script.js"></script>
     <script>
         $(document).ready(function () {
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -33,13 +33,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" href="gioithieu.html">Giới thiệu</a>
+                            <a class="nav-link active" href="../html/gioithieu.html">Giới thiệu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="danhSach.html">Danh sách sản phẩm</a>
+                            <a class="nav-link" href="../html/danhSach.html">Danh sách sản phẩm</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="map.html">Địa chỉ</a>
+                            <a class="nav-link" href="../html/map.html">Địa chỉ</a>
                         </li>
                     </ul>
                 </div>
@@ -48,14 +48,14 @@
     
         <div class="row align-items-center py-3 custom-header">
             <div class="col-lg-3 text-center text-lg-start mb-3 mb-lg-0">
-                <img src="/img/logo.png" alt="Logo" class="img-fluid" style="max-width: 200px;">
+                <img src="../img/logo.png" alt="Logo" class="img-fluid" style="max-width: 200px;">
             </div>
         
             <div class="col-lg-5 position-relative mb-3 mb-lg-0">
                 <div class="input-group">
                     <input type="text" class="form-control custom-search-input" id="searchInput" placeholder="Tìm kiếm sản phẩm" required>
-                    <a href="/html/danhSach.html" class="btn btn-primary px-3">
-                        <img src="/img/timKiem.png" alt="Tìm kiếm" width="25px">
+                    <a href="../html/danhSach.html" class="btn btn-primary px-3">
+                        <img src="../img/timKiem.png" alt="Tìm kiếm" width="25px">
                     </a>
                 </div>
                 <div id="suggestions" class="suggestions-box"></div> 
@@ -63,21 +63,21 @@
         
             <div class="col-lg-4 d-flex align-items-center justify-content-around">
                 <div class="d-flex align-items-center">
-                    <img src="/img/dienthoai.png" alt="Điện thoại" class="rounded-circle me-2" width="40" height="40">
+                    <img src="../img/dienthoai.png" alt="Điện thoại" class="rounded-circle me-2" width="40" height="40">
                     <div>
                         <p class="mb-0 fw-bold text-dark">1900 866 819</p>
                     </div>
                 </div>
         
-                <a href="dangKyTV.html" class="d-flex align-items-center text-decoration-none text-dark">
-                    <img src="/img/dangnhap.png" alt="Đăng nhập" class="rounded-circle me-2" width="40" height="40">
+                <a href="../html/dangKyTV.html" class="d-flex align-items-center text-decoration-none text-dark">
+                    <img src="../img/dangnhap.png" alt="Đăng nhập" class="rounded-circle me-2" width="40" height="40">
                     <div>
                         <strong id="userName">Đăng nhập</strong><br><span id="subAction" style="font-size: 0.85rem;">Đăng ký</span>
                     </div>
                 </a>
         
-                <a href="gioHang.html">
-                    <img src="/img/giohang.png" alt="Giỏ hàng" width="40" class="rounded">
+                <a href="../html/gioHang.html">
+                    <img src="../img/giohang.png" alt="Giỏ hàng" width="40" class="rounded">
                 </a>
             </div>
         </div>
@@ -85,35 +85,35 @@
         
         <div class="row qc-row">
             <div class="col-lg-6">
-                <img src="/img/quancao1.png" alt="Quảng cáo 1" class="qc-img">
+                <img src="../img/quancao1.png" alt="Quảng cáo 1" class="qc-img">
             </div>
             <div class="col-lg-6">
-                <img src="/img/quangcao2.png" alt="Quảng cáo 2" class="qc-img">
+                <img src="../img/quangcao2.png" alt="Quảng cáo 2" class="qc-img">
             </div>
         </div>
         
         <div class="row">
             <div class="col-lg-12" id="tap-hop">
-                <a href="/html/quangCao.html">
-                    <img src="/img/camnang.png" alt="Cẩm nang" width="70px" height="70px" class="rounded">
+                <a href="../html/quangCao.html">
+                    <img src="../img/camnang.png" alt="Cẩm nang" width="70px" height="70px" class="rounded">
                 </a>
-                <a href="/html/quangCao.html">
-                    <img src="/img/spmoi.png" alt="Sản phẩm mới" width="70px" height="70px" class="rounded">
+                <a href="../html/quangCao.html">
+                    <img src="../img/spmoi.png" alt="Sản phẩm mới" width="70px" height="70px" class="rounded">
                 </a>
-                <a href="/html/quangCao.html">
-                    <img src="/img/outlet.png" alt="Outlet" width="70px" height="70px" class="rounded">
+                <a href="../html/quangCao.html">
+                    <img src="../img/outlet.png" alt="Outlet" width="70px" height="70px" class="rounded">
                 </a>
-                <a href="/html/quangCao.html">
-                    <img src="/img/mayin.png" alt="Máy in" width="70px" height="70px" class="rounded">
+                <a href="../html/quangCao.html">
+                    <img src="../img/mayin.png" alt="Máy in" width="70px" height="70px" class="rounded">
                 </a>
-                <a href="/html/quangCao.html">
-                    <img src="/img/vpp.png" alt="Văn phòng phẩm" width="70px" height="70px" class="rounded">
+                <a href="../html/quangCao.html">
+                    <img src="../img/vpp.png" alt="Văn phòng phẩm" width="70px" height="70px" class="rounded">
                 </a>
-                <a href="/html/quangCao.html">
-                    <img src="/img/topsale.png" alt="Top sale" width="70px" height="70px" class="rounded">
+                <a href="../html/quangCao.html">
+                    <img src="../img/topsale.png" alt="Top sale" width="70px" height="70px" class="rounded">
                 </a>
-                <a href="/html/quangCao.html">
-                    <img src="/img/kiemtradh.png" alt="Kiểm tra đơn hàng" width="70px" height="70px" class="rounded">
+                <a href="../html/quangCao.html">
+                    <img src="../img/kiemtradh.png" alt="Kiểm tra đơn hàng" width="70px" height="70px" class="rounded">
                 </a>
                 
             </div>
@@ -133,35 +133,35 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <img src="/img/butcc.png" alt="Bút" height="300px" width="100%">
+                <img src="../img/butcc.png" alt="Bút" height="300px" width="100%">
             </div>
         </div>
 
         <div class="row" id="but">
             <div class="col-lg-3">
-                <a href="danhSach.html">
-                    <img src="/img/but1.png" alt="Bút cao cấp thiên long - bizer" width="300px" height="300px">
+                <a href="../html/danhSach.html">
+                    <img src="../img/but1.png" alt="Bút cao cấp thiên long - bizer" width="300px" height="300px">
                     <p class="text-danger">Bút cao cấp thiên long - bizer</p>
                     <b class="text-primary">4.320.000đ</b>
                 </a>
             </div>
             <div class="col-lg-3">
-                <a href="danhSach.html">
-                    <img src="/img/but2.png" alt="Bút cao cấp Parker" width="300px" height="300px">
+                <a href="../html/danhSach.html">
+                    <img src="../img/but2.png" alt="Bút cao cấp Parker" width="300px" height="300px">
                     <p class="text-danger">Bút cao cấp Parker</p>
                     <b class="text-primary">3.320.000đ</b>
                 </a>
             </div>
             <div class="col-lg-3">
-                <a href="danhSach.html">
-                    <img src="/img/but3.png" alt="Bút cao cấp Son-X" width="300px" height="300px">
+                <a href="../html/danhSach.html">
+                    <img src="../img/but3.png" alt="Bút cao cấp Son-X" width="300px" height="300px">
                     <p class="text-danger">Bút cao cấp Son-X</p>
                     <b class="text-primary">2.320.000đ</b>
                 </a>
             </div>
             <div class="col-lg-3">
-                <a href="danhSach.html">
-                    <img src="/img/but4.png" alt="Bút cao cấp Son-Y" width="300px" height="300px">
+                <a href="../html/danhSach.html">
+                    <img src="../img/but4.png" alt="Bút cao cấp Son-Y" width="300px" height="300px">
                     <p class="text-danger">Bút cao cấp Son-Y</p>
                     <b class="text-primary">2.400.000đ</b>
                 </a>
@@ -170,37 +170,37 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <img src="/img/giayin.png" alt="Giấy in" width="100%" height="300px">
+                <img src="../img/giayin.png" alt="Giấy in" width="100%" height="300px">
             </div>
         </div>
         <div class="row" id="but">
             <div class="col-lg-3">
-                <a href="danhSach.html">
-                    <img src="/img/butlong1.png" alt="Bút lông thiên long - bizer" width="300px" height="300px">
+                <a href="../html/danhSach.html">
+                    <img src="../img/butlong1.png" alt="Bút lông thiên long - bizer" width="300px" height="300px">
                 <p class="text-danger">Bút lông thiên long - bizer</p>
                 <b class="text-primary">320.000đ</b>
                 </a>
                 
             </div>
             <div class="col-lg-3">
-                <a href="danhSach.html">
-                    <img src="/img/butlong2.png" alt="Bút lông Parker" width="300px" height="300px">
+                <a href="../html/danhSach.html">
+                    <img src="../img/butlong2.png" alt="Bút lông Parker" width="300px" height="300px">
                     <p class="text-danger">Bút lông Parker</p>
                     <b class="text-primary">4.320.000đ</b>
                 </a>
                
             </div>
             <div class="col-lg-3">
-                <a href="danhSach.html">
-                    <img src="/img/butlong3.png" alt="Bút lông Son-X" width="300px" height="300px">
+                <a href="../html/danhSach.html">
+                    <img src="../img/butlong3.png" alt="Bút lông Son-X" width="300px" height="300px">
                 <p class="text-danger">Bút lông Son-X</p>
                 <b class="text-primary">250.000đ</b>
                 </a>
                 
             </div>
             <div class="col-lg-3">
-                <a href="danhSach.html">
-                    <img src="/img/butlong4.png" alt="Bút lông Son-Y" width="300px" height="300px">
+                <a href="../html/danhSach.html">
+                    <img src="../img/butlong4.png" alt="Bút lông Son-Y" width="300px" height="300px">
                     <p class="text-danger">Bút lông Son-Y</p>
                     <b class="text-primary">220.000đ</b>
                 </a>
@@ -209,38 +209,38 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <img src="/img/gdt.png" alt="Giấy tờ" width="100%" height="300px">
+                <img src="../img/gdt.png" alt="Giấy tờ" width="100%" height="300px">
             </div>
         </div>
         <div class="row" id="but">
             <div class="col-lg-3">
-                <a href="danhSach.html">
-                    <img src="/img/gdt1.png" alt="Bút mực con gấu" width="300px" height="300px">
+                <a href="../html/danhSach.html">
+                    <img src="../img/gdt1.png" alt="Bút mực con gấu" width="300px" height="300px">
                     <p class="text-danger">Bút mực con gấu</p>
                     <b class="text-primary">320.000đ</b>
                 </a>
                 
             </div>
             <div class="col-lg-3">
-                <a href="danhSach.html">
-                    <img src="/img/gdt2.png" alt="Bút mực con cáo" width="300px" height="300px">
+                <a href="../html/danhSach.html">
+                    <img src="../img/gdt2.png" alt="Bút mực con cáo" width="300px" height="300px">
                 <p class="text-danger">Bút mực con cáo</p>
                 <b class="text-primary">4.320.000đ</b>
                 </a>
                 
             </div>
             <div class="col-lg-3">
-                <a href="danhSach.html">
-                    <img src="/img/gdt3.png" alt="Bút mực 2 màu" width="300px" height="300px">
+                <a href="../html/danhSach.html">
+                    <img src="../img/gdt3.png" alt="Bút mực 2 màu" width="300px" height="300px">
                 <p class="text-danger">Bút mực 2 màu</p>
                 <b class="text-primary">250.000đ</b>
                 </a>
                 
             </div>
             <div class="col-lg-3">
-                <a href="danhSach.html">
+                <a href="../html/danhSach.html">
                 
-                    <img src="/img/gdt4.png" alt="Bút mực chuyên dụng" width="300px" height="300px">
+                    <img src="../img/gdt4.png" alt="Bút mực chuyên dụng" width="300px" height="300px">
                     <p class="text-danger">Bút mực chuyên dụng</p>
                     <b class="text-primary">220.000đ</b>
                 </a>
@@ -249,7 +249,7 @@
 
         <div class="row">
             <div class="col-lg-3">
-                <img src="/img/thienlong.png" alt="Thienlong.vn" width="320px">
+                <img src="../img/thienlong.png" alt="Thienlong.vn" width="320px">
                 <b>
                     Thienlong.vn - Website thương mại điện tử thuộc Tập đoàn Thiên Long
                 </b>

@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Ký Thành Viên</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/index.css">
-    <script src="/js/jquery-3.7.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/script.js"></script>
 
 </head>
 <body>
@@ -45,7 +45,7 @@
                 <p><strong>Email:</strong> <span id="displayEmail"></span></p>
                 <p><strong>Tên đăng nhập:</strong> <span id="displayUsername"></span></p>
             </div>
-            <p class="text-center mt-3">Bạn đã có tài khoản? <a href="dangNhap.html">Đăng nhập tại đây</a></p>
+            <p class="text-center mt-3">Bạn đã có tài khoản? <a href="../html/dangNhap.html">Đăng nhập tại đây</a></p>
         </div>
     </div>
 
@@ -100,7 +100,7 @@
     
                 // Chuyển trang sau 2 giây
                 setTimeout(function () {
-                    window.location.href = "dangNhap.html";
+                    window.location.href = "../html/dangNhap.html";
                 }, 2000);
     
                 $("#registerForm")[0].reset();
