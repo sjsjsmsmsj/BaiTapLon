@@ -51,39 +51,62 @@
 
     <script>
         $(document).ready(function () {
-            // Đăng ký
             $("#registerForm").on("submit", function(event) {
                 event.preventDefault();
+    
                 let fullName = $("#fullName").val().trim();
                 let email = $("#email").val().trim();
                 let username = $("#regUsername").val().trim();
                 let password = $("#regPassword").val().trim();
                 let confirmPassword = $("#regConfirmPassword").val().trim();
-                
+    
+                // Kiểm tra họ tên
+                if (fullName === "") {
+                    $("#regMessage").text("Vui lòng nhập họ và tên!");
+                    return;
+                }
+    
+                // Kiểm tra tên đăng nhập
+                if (username === "") {
+                    $("#regMessage").text("Vui lòng nhập tên đăng nhập!");
+                    return;
+                }
+    
+                // Kiểm tra mật khẩu mạnh
+                let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+                if (!passwordPattern.test(password)) {
+                    $("#regMessage").text("Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và số.");
+                    return;
+                }
+    
+                // Kiểm tra mật khẩu nhập lại
                 if (password !== confirmPassword) {
                     $("#regMessage").text("Mật khẩu nhập lại không khớp!");
                     return;
                 }
-                
+    
+                // Lưu thông tin người dùng
                 let user = { fullName, email, username, password };
                 let users = JSON.parse(localStorage.getItem("users")) || [];
                 users.push(user);
                 localStorage.setItem("users", JSON.stringify(users));
-                
+    
+                // Hiển thị thông tin
                 $("#displayFullName").text(fullName);
                 $("#displayEmail").text(email);
                 $("#displayUsername").text(username);
                 $("#userInfo").removeClass("d-none");
                 $("#regMessage").text("Đăng ký thành công!").css("color", "green");
-
-                // Sau 2 giây chuyển hướng đến trang đăng nhập
-                setTimeout(function() {
+    
+                // Chuyển trang sau 2 giây
+                setTimeout(function () {
                     window.location.href = "dangNhap.html";
                 }, 2000);
-                
+    
                 $("#registerForm")[0].reset();
             });
         });
     </script>
+    
 </body>
 </html>
