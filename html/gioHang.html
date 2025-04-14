@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/index.css">
     <script src="../js/jquery-3.7.1.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <script src="../js/script.js"></script>
     <style>
         .card-img-top {
@@ -66,15 +66,38 @@
         </div>
     </nav>
 
-    <div class="container mt-4">
+    <div class="container mt-4" id="invoice" >
         <h2>Giỏ Hàng</h2>
         <div class="row" id="cart-items">
             <!-- Các sản phẩm trong giỏ hàng sẽ được hiển thị ở đây -->
         </div>
         <div class="text-end mt-4">
             <p id="total-price" class="fw-bold"></p> <!-- Hiển thị tổng tiền -->
-            <button class="btn btn-primary" onclick="checkout()">Thanh toán</button>
+            <button class="btn btn-primary" onclick="showCheckoutModal()">Thanh toán</button>
+
         </div>
+        <!-- Modal xác nhận thanh toán -->
+<div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xác nhận thanh toán</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body" id="checkout-modal-body">
+                <!-- Nội dung được cập nhật bằng JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" onclick="confirmCheckout()">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <button class="btn btn-secondary ms-2" onclick="viewOrderHistory()">Xem lịch sử đơn hàng</button>
+        <div id="order-history" class="mt-4"></div>
+
     </div>
 
     <script>
@@ -120,6 +143,41 @@
             // Hiển thị tổng tiền
             document.getElementById("total-price").innerHTML = `Tổng tiền: ${totalPrice.toLocaleString()} VNĐ`;
         }
+        // Mở modal xác nhận thanh toán
+function showCheckoutModal() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    if (cart.length === 0) {
+        alert("Giỏ hàng trống, không thể thanh toán.");
+        return;
+    }
+
+    let totalItems = 0;
+    let totalPrice = 0;
+
+    cart.forEach(item => {
+        totalItems += item.quantity;
+        totalPrice += parseFloat(item.price) * item.quantity;
+    });
+
+    document.getElementById("checkout-modal-body").innerHTML = `
+        <p>Số lượng sản phẩm: <strong>${totalItems}</strong></p>
+        <p>Tổng tiền: <strong>${totalPrice.toLocaleString()} VNĐ</strong></p>
+        <p>Bạn có chắc chắn muốn xuất hóa đơn không?</p>
+    `;
+
+    // Hiển thị modal (sử dụng Bootstrap 5)
+    let modal = new bootstrap.Modal(document.getElementById("checkoutModal"));
+    modal.show();
+}
+
+// Xác nhận thanh toán và xuất hóa đơn
+function confirmCheckout() {
+    checkout(); // Gọi hàm thanh toán đã có sẵn
+    let modalEl = document.getElementById("checkoutModal");
+    let modalInstance = bootstrap.Modal.getInstance(modalEl);
+    modalInstance.hide(); // Đóng modal
+}
+
 
         // Hàm xóa sản phẩm khỏi giỏ hàng
         function removeItem(productName) {
@@ -142,11 +200,79 @@
             renderCart(); // Cập nhật lại giỏ hàng
         }
 
-        // Hàm thanh toán (chỉ đơn giản là thông báo ở đây, bạn có thể thêm các thao tác thanh toán khác)
+        // Hàm tạo và lưu hóa đơn
         function checkout() {
-            alert("Cảm ơn bạn đã mua hàng!");
-            // Bạn có thể thêm chức năng thanh toán tại đây
-        }
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length === 0) {
+        alert("Giỏ hàng trống, không thể thanh toán.");
+        return;
+    }
+
+    let total = 0;
+    let invoiceHTML = `<h4>Hóa Đơn Mua Hàng</h4><ul class="list-group mb-3">`;
+
+    cart.forEach(item => {
+        let price = parseFloat(item.price) || 0;
+        let subtotal = price * item.quantity;
+        total += subtotal;
+        invoiceHTML += `<li class="list-group-item d-flex justify-content-between align-items-center">
+            ${item.name} - SL: ${item.quantity}
+            <span>${subtotal.toLocaleString()} VNĐ</span>
+        </li>`;
+    });
+
+    invoiceHTML += `</ul><p class="fw-bold">Tổng cộng: ${total.toLocaleString()} VNĐ</p>`;
+    
+    // THAY VÌ: document.getElementById("invoice").innerHTML = invoiceHTML;
+    // THÊM VÙNG RIÊNG ĐỂ HIỂN THỊ HÓA ĐƠN
+    let detail = document.createElement("div");
+    detail.innerHTML = invoiceHTML;
+    document.getElementById("order-history").prepend(detail);
+
+    // Lưu vào lịch sử hóa đơn
+    let history = JSON.parse(localStorage.getItem("orderHistory")) || [];
+    history.push({
+        date: new Date().toLocaleString(),
+        items: cart,
+        total: total
+    });
+    localStorage.setItem("orderHistory", JSON.stringify(history));
+
+    alert("Cảm ơn bạn đã mua hàng!");
+
+    // Xóa giỏ hàng và cập nhật
+    localStorage.removeItem("cart");
+    renderCart();
+}
+
+function viewOrderHistory() {
+    let history = JSON.parse(localStorage.getItem("orderHistory")) || [];
+    let container = document.getElementById("order-history");
+
+    if (history.length === 0) {
+        container.innerHTML = "<p>Chưa có đơn hàng nào.</p>";
+        return;
+    }
+
+    let html = "<h4>Lịch sử đơn hàng</h4>";
+    history.forEach((order, index) => {
+        html += `<div class="border rounded p-3 mb-3">
+            <h5>Đơn hàng #${index + 1} - Ngày: ${order.date}</h5>
+            <ul class="list-group">`;
+        order.items.forEach(item => {
+            let subtotal = parseFloat(item.price) * item.quantity;
+            html += `<li class="list-group-item d-flex justify-content-between align-items-center">
+                ${item.name} - SL: ${item.quantity}
+                <span>${subtotal.toLocaleString()} VNĐ</span>
+            </li>`;
+        });
+        html += `</ul><p class="fw-bold mt-2">Tổng cộng: ${order.total.toLocaleString()} VNĐ</p></div>`;
+    });
+
+    container.innerHTML = html;
+}
+
 
         // Gọi hàm renderCart khi trang được tải
         document.addEventListener("DOMContentLoaded", function () {

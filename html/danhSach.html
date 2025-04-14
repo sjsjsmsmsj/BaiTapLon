@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/index.css">
     <script src="../js/jquery-3.7.1.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <script src="../js/script.js"></script>
 </head>
 <body>
@@ -36,7 +36,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalProductName"></h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
                 </div>
                 <div class="modal-body text-center">
                     <img id="modalProductImage" src="" class="img-fluid mb-3" alt="">
@@ -47,7 +47,8 @@
                 <div class="modal-footer">
                     <button class="btn btn-success" onclick="addToCartFromModal()">Thêm vào giỏ</button>
                     <a href="../html/review.html" class="btn btn-outline-primary mt-2">Xem đánh giá</a>
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+
                 </div>
             </div>
         </div>
@@ -58,6 +59,7 @@
     </div>
 
     <script>
+        
         const products = [
 // Văn phòng
 { name: "Bấm Kim", image: "../img/bamKim.png", category: "vanphong", price: 25000, quantity: 50, bestSeller: true},
