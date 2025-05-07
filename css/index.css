@@ -388,3 +388,12 @@ footer ul li {
         margin-bottom: 20px;
     }
 }
+
+.qc-img {
+    margin-left: 20px;
+    width: 600px;
+    aspect-ratio: 1 / 1;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px; /* tùy chọn */
+}
