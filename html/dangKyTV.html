@@ -61,10 +61,12 @@ $(document).ready(function () {
         let confirmPassword = $("#regConfirmPassword").val().trim();
 
         // Kiểm tra họ tên
-        if (fullName === "") {
-            $("#regMessage").text("Vui lòng nhập họ và tên!");
-            return;
-        }
+        let namePattern = /^([A-ZÀ-Ỵ][a-zà-ỹ]+\s){1,}[A-ZÀ-Ỵ][a-zà-ỹ]+$/;
+if (!namePattern.test(fullName)) {
+    $("#regMessage").text("Họ tên phải có ít nhất 2 từ, mỗi từ bắt đầu bằng chữ hoa.");
+    return;
+}
+
 
         // Kiểm tra tên đăng nhập
         if (username === "") {
