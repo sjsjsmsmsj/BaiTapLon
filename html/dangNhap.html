@@ -24,9 +24,15 @@
                     <input type="text" class="form-control" id="loginUsername" required>
                 </div>
                 <div class="mb-3">
-                    <label>Mật khẩu</label>
-                    <input type="password" class="form-control" id="loginPassword" required>
+                    <label for="loginPassword">Mật khẩu</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="loginPassword" required>
+                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                            👁️
+                        </button>
+                    </div>
                 </div>
+                
                 <button type="submit" class="btn btn-success w-100">Đăng Nhập</button>
                 <p id="loginMessage" class="text-danger text-center mt-2"></p>
                 <p class="text-center mt-3">Chưa có tài khoản? <a href="../html/dangKyTV.html" id="showRegister">Đăng ký tại đây</a></p>
@@ -54,6 +60,14 @@
                 }
             });
         });
+        $("#togglePassword").on("click", function () {
+    const passwordField = $("#loginPassword");
+    const type = passwordField.attr("type") === "password" ? "text" : "password";
+    passwordField.attr("type", type);
+    $(this).html(type === "password" ? "👁️" : "🙈");
+});
+
+
     </script>
 </body>
 </html>

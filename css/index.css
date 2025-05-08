@@ -397,3 +397,8 @@ footer ul li {
     object-fit: cover;
     border-radius: 10px; /* tùy chọn */
 }
+
+.card-img-top {
+    height: 300px; /* hoặc bất kỳ chiều cao nào bạn muốn */
+    object-fit: cover; /* để hình ảnh không bị méo */
+}
