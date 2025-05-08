@@ -51,6 +51,17 @@
 
     <script>
 $(document).ready(function () {
+    let namePattern = /^([A-ZÀ-Ỵ]{1}[a-zà-ỹ]+)(\s[A-ZÀ-Ỵ]{1}[a-zà-ỹ]*)+$/;
+
+    $("#fullName").on("input", function () {
+        let fullName = $(this).val().trim();
+        if (!namePattern.test(fullName)) {
+            $("#regMessage").text("Họ tên phải có ít nhất 2 từ, mỗi từ bắt đầu bằng chữ hoa.");
+        } else {
+            $("#regMessage").text("");
+        }
+    });
+
     $("#registerForm").on("submit", function(event) {
         event.preventDefault();
 
@@ -60,56 +71,44 @@ $(document).ready(function () {
         let password = $("#regPassword").val().trim();
         let confirmPassword = $("#regConfirmPassword").val().trim();
 
-        // Kiểm tra họ tên
-        let namePattern = /^([A-ZÀ-Ỵ]{1}[a-zà-ỹ]+)(\s[A-ZÀ-Ỵ]{1}[a-zà-ỹ]*)+$/;
-if (!namePattern.test(fullName)) {
-    $("#regMessage").text("Họ tên phải có ít nhất 2 từ, mỗi từ bắt đầu bằng chữ hoa.");
-    return;
-}
+        if (!namePattern.test(fullName)) {
+            $("#regMessage").text("Họ tên phải có ít nhất 2 từ, mỗi từ bắt đầu bằng chữ hoa.");
+            return;
+        }
 
-
-        // Kiểm tra tên đăng nhập
         if (username === "") {
             $("#regMessage").text("Vui lòng nhập tên đăng nhập!");
             return;
         }
 
-        // Kiểm tra mật khẩu mạnh
         let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
         if (!passwordPattern.test(password)) {
             $("#regMessage").text("Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và số.");
             return;
         }
 
-        // Kiểm tra mật khẩu nhập lại
         if (password !== confirmPassword) {
             $("#regMessage").text("Mật khẩu nhập lại không khớp!");
             return;
         }
 
-        // Lấy danh sách người dùng từ localStorage
         let users = JSON.parse(localStorage.getItem("users")) || [];
-
-        // ✅ Kiểm tra trùng tên đăng nhập
         let usernameExists = users.some(user => user.username === username);
         if (usernameExists) {
             $("#regMessage").text("Tên đăng nhập đã tồn tại. Vui lòng chọn tên khác!");
             return;
         }
 
-        // Nếu không trùng thì tiếp tục đăng ký
         let user = { fullName, email, username, password };
         users.push(user);
         localStorage.setItem("users", JSON.stringify(users));
 
-        // Hiển thị thông tin
         $("#displayFullName").text(fullName);
         $("#displayEmail").text(email);
         $("#displayUsername").text(username);
         $("#userInfo").removeClass("d-none");
         $("#regMessage").text("Đăng ký thành công!").css("color", "green");
 
-        // Chuyển trang sau 2 giây
         setTimeout(function () {
             window.location.href = "../html/dangNhap.html";
         }, 2000);
