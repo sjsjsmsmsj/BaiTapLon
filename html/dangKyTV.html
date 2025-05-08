@@ -93,6 +93,14 @@ $(document).ready(function () {
         }
 
         let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        // Kiểm tra email đã tồn tại
+let emailExists = users.some(user => user.email === email);
+if (emailExists) {
+    $("#regMessage").text("Email đã được sử dụng. Vui lòng nhập email khác!");
+    return;
+}
+
         let usernameExists = users.some(user => user.username === username);
         if (usernameExists) {
             $("#regMessage").text("Tên đăng nhập đã tồn tại. Vui lòng chọn tên khác!");
